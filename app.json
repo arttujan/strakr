@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "sdkVersion": "21.0.0",
+    "ios": {
+      "bundleIdentifier": "com.arttujantunen.strakr"
+    }
+  }
+}

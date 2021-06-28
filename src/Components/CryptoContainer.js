@@ -1,37 +1,40 @@
-import React, {Component} from 'react';
+
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import FetchCoinData from '../Actions/FetchCoinData';
+import FetchCoinData from './../Actions/FetchCoinData';
 import CoinCard from './CoinCard';
 
 class CryptoContainer extends Component {
+
     componentWillMount() {
         this.props.FetchCoinData();
     }
 
     renderCoinCards() {
-        const {crypto} = this.props;
-
-        return crypto.data.map((coin) =>
-            <CoinCard
-            key={coin.name}
-            coin_name={coin.name}
-            symbol={coin.symbol}
-            price_usd={coin.price_usd}
-            percent_change_24hr={coin.percent_change_24hr}
-            percent_change_7d={coin.percent_change_7d}
+        const { crypto } = this.props;
+        return crypto.data.map((coin) => 
+            <CoinCard 
+                key={coin.name}
+                coin_name={coin.name}
+                symbol={coin.symbol}
+                price_usd={coin.price_usd}
+                percent_change_24h={coin.percent_change_24h}
+                percent_change_7d={coin.percent_change_7d}
             />
-        )
+        ) 
     }
 
+
     render() {
-        const {crypto} = this.props;
-        const {contentContainer} = styles;
+
+        const { crypto } = this.props;
+        const { contentContainer } = styles;
 
         if (crypto.isFetching) {
-            return(
+            return (
                 <View>
                     <Spinner
                         visible={crypto.isFetching}
@@ -39,7 +42,7 @@ class CryptoContainer extends Component {
                         textStyle={{color: '#253145'}}
                         animation="fade"
                     />
-                </View>     
+                </View>
             )
         }
 
@@ -48,13 +51,15 @@ class CryptoContainer extends Component {
                 {this.renderCoinCards()}
             </ScrollView>
         )
+        
+
     }
 }
 
 const styles = {
     contentContainer: {
         paddingBottom: 100,
-        paddingTop: 55,
+        paddingTop: 55
     }
 }
 
