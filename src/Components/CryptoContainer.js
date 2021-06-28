@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import {images} from '..Utils/CoinIcons';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import FetchCoinData from './../Actions/FetchCoinData';
+import FetchCoinData from '../Actions/FetchCoinData';
 import CoinCard from './CoinCard';
 
 class CryptoContainer extends Component {
@@ -34,12 +33,12 @@ class CryptoContainer extends Component {
         if (crypto.isFetching) {
             return(
                 <View>
-                    <Spinner>
+                    <Spinner
                         visible={crypto.isFetching}
                         textContent={"Loading..."}
                         textStyle={{color: '#253145'}}
                         animation="fade"
-                    </Spinner>
+                    />
                 </View>     
             )
         }
@@ -59,10 +58,10 @@ const styles = {
     }
 }
 
-function mapStateToProp(state) {
+function mapStateToProps(state) {
     return {
         crypto: state.crypto
     }
 }
 
-export default connect(mapStateToProp, {FetchCoinData})(CryptoContainer )
+export default connect(mapStateToProps, { FetchCoinData })(CryptoContainer)
